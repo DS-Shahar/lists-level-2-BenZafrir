@@ -1,21 +1,36 @@
 
-package nodes;
+package ex1;
 public class Main {
 	
 	public static Node<Integer> merger(Node<Integer> L1, Node<Integer> L2) {
-		L1 = new Node<Integer>(null,L1);
+
+		Node<Integer>L5 = new Node<Integer>(-1);
+		Node<Integer>head = L5;
+		
 		Node<Integer> P1 = L1;
+
 		Node<Integer> P2 = L2;
-		while (P1!=null) {
-			while (P1.getNext()==null) {
-				if(P2.getValue()>P1.getValue()){
-					P1.setNext(P2);
+		
+		while (P1!=null || P2!=null ) {
+			    if (P2==null) {
+		    	   L5.setNext(P1);
+				   P1= P1.getNext();
+		        }
+			    if (P1==null) {
+			    	L5.setNext(P2);
+					P2= P2.getNext();
+			    }
+			    else if(P2.getValue()>P1.getValue()){
+					L5.setNext(P1);
+					P1= P1.getNext();
 				}
-				P2= P2.getNext();
+				else {
+					L5.setNext(P2);
+					P2= P2.getNext();
 			}
-			P1= P1.getNext();
+			L5= L5.getNext();
 		}
-		return L1.getNext();
+		return head.getNext();
 	}
 
     public static void main(String[] args) {
@@ -49,5 +64,8 @@ public class Main {
 	}
 
 }
+	
+	
+
 
 
