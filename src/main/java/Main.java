@@ -32,8 +32,67 @@ public class Main {
 		}
 		return head.getNext();
 	}
+	public static int q6(Node<Integer> L1) {
+	        Node<Integer> head = L1;
+	        int counter = 1;
+	        int max = 0;
 
-    public static void main(String[] args) {
+	        while (head.getNext() != null) {
+	            if (head.getNext().getValue() >= head.getValue()) {
+	                counter++;
+	                head = head.getNext();
+	            } else {
+	            	if(counter>max) {
+	            		max=counter;
+	            	}
+	                counter = 1;
+	                head = head.getNext();
+	            }
+	        }
+	        if(counter>max) {
+	        	max=counter;
+	        }
+	        return max;
+	    }
+	 
+	 
+	 public static void q7(Node<Integer> L1) {
+		    Node<Integer> head = L1;
+		    Node<Integer> maxPointer = head;
+		    Node<Integer> startMax = head;
+		    Node<Integer> startCur= head;
+		    int counter = 1;
+		    int max = 0;
+
+		    while (head.getNext() != null) {
+		        if (head.getNext().getValue() >= head.getValue()) {
+		            counter++;
+		            head = head.getNext();
+		        } 
+		        else {
+		            if (counter > max) {
+		                max = counter;
+		                startMax = startCur;
+		            }
+		            counter = 1;
+		            head = head.getNext();
+		            startCur = head;
+		        }
+		    }
+		    if (counter > max) {
+		        max = counter;
+		        startMax = startCur;
+		    }
+
+		    Node<Integer> temp = startMax;
+		    for (int i = 0; i < max; i++) {
+		        System.out.print(temp.getValue() + " ");
+		        System.out.println();
+		        temp = temp.getNext();
+		    }
+		}
+	
+	public static void main(String[] args) {
 
 		Node<Integer> a1 = new Node<>(1);
 		Node<Integer> a2 = new Node<>(2);
